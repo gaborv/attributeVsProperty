@@ -15,21 +15,21 @@ The tests use [benchmark.js](https://benchmarkjs.com/) under the hood.
 
 ## Reading the results
 A DOM attribute API operation looks like this:
-```
+```javascript
 var hiddenRow = document.getElementById('hiddenRow');
 hiddenRow.removeAttribute("hidden");
 hiddenRow.setAttribute("hidden", "hidden");
 ```
 
 A JS property operation looks like this:
-```
+```javascript
 var hiddenRow = document.getElementById('hiddenRow');
 hiddenRow.hidden = "";
 hiddenRow.hidden = "true";
 ```
 
 A "mixed" operation looks like this:
-```
+```javascript
 var hiddenRow = document.getElementById('hiddenRow');
 hiddenRow.removeAttribute("hidden");
 hiddenRow.hidden = "true";
