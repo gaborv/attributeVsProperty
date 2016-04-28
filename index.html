@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>DOM Attributes vs. JS Properties</title>
+
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="content/theme.min.css" />
+    <link rel="stylesheet" href="content/styles.css" />
+
+    <!-- Benchmark.js and dependencies, see: https://www.jsdelivr.com/ -->
+    <script src="https://cdn.jsdelivr.net/g/lodash@4.11.2(lodash.js),benchmarkjs@2.1.0,platform.js@1.3.1"></script>
+
+    <!-- JQuery & other stuff -->
+    <script src="https://cdn.jsdelivr.net/jquery/2.2.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Performance implications of using JS properties vs DOM attributes</h2>
+
+        <table id="testResults" class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th rowspan="2" class="mainHeader">Test name</th>
+                    <th colspan="2" class="mainHeader">Attribute</th>
+                    <th rowspan="2" class="vsHeader info">vs.</th>
+                    <th colspan="2" class="mainHeader">Mixed</th>
+                    <th rowspan="2" class="vsHeader info">vs.</th>
+                    <th colspan="2" class="mainHeader">Property</th>
+                </tr>
+                <tr>
+                    <th class="subHeader">op/sec</th>
+                    <th class="subHeader rmeCol"><abbr title="Relative margin of error" class="initialism">rme</abbr> ±%</th>
+                    <th class="subHeader">op/sec</th>
+                    <th class="subHeader rmeCol"><abbr title="Relative margin of error" class="initialism">rme</abbr> ±%</th>
+                    <th class="subHeader">op/sec</th>
+                    <th class="subHeader rmeCol"><abbr title="Relative margin of error" class="initialism">rme</abbr> ±%</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="startRow">
+                    <td colspan="9" class="start" id="startCell">
+                        <div id="startControl">Click to run the tests: <button id="startBtn">START</button></div>
+                        <div id="runningStatus" hidden>Tests are running...</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br/><br/><br/><br/>
+        <h2>Test content</h2>
+        <em>The following elements are used to perform tests on them.</em>
+        <table id="testTable" class="table table-bordered">
+            <thead>
+                <tr id="testHeaderRow">
+                    <th id="thCols2" colspan="2">1 &nbsp;&ndash;&nbsp; Colspan 2</th>
+                    <th id="thRows2" rowspan="3">2 &nbsp;&ndash;&nbsp; Rowspan 3</th>
+                    <th>3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="row">
+                    <td>1</td>
+                    <td id="tdCols2" colspan="2">2</td>
+                    <td class="form-inline"><input id="testInput" class="form-control" aria-label="A test input field." maxlength="15" value="some content -- foo"></input>
+                    </td>
+                </tr>
+                <tr hidden id="hiddenRow">
+                    <td>1</td>
+                    <td>2</td>
+                    <td id="hiddenTdCols2" colspan="2">3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<!-- Execute tests -->
+<script src="testSuits.js"></script>
+
+</html>
